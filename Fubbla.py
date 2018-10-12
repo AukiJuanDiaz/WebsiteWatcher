@@ -3,7 +3,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
 
-#Email transfer
+# Email transfer
 import smtplib
 from email.mime.text import MIMEText
 
@@ -20,10 +20,19 @@ else:
     
 print(soup.prettify())
 
+# Prepare the Email-Server
 password = open('credentials.txt', 'r').read()
+s = smtplib.SMTP('ssrs.reachmail.net',25)
+s.login('hauke.diers@outlook.com', password)
 
-print(password)
+# Prepare the Email-Message
+with open('Hello_Email.txt') as fp:
+    msg = MIMEText(fp.read())
 
-S = smtplib.SMTP('ssrs.reachmail.net',2525)
-S.login('hauke.diers@outlook.com', password)
+msg['Subject']= 'Raspberry Pi Email'
+msg['From'] = 'Hauke.diers@outlook.com'
+msg['To'] = 'Hauke.diers@outlook.com'
+
+s.send_message(msg)
+s.quit()
 
