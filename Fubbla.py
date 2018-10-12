@@ -18,7 +18,9 @@ else:
     print('good!')
     soup = BeautifulSoup(response, 'html.parser')
     
-print(soup.prettify())
+# print(soup.find("div", {"id":"popupAddToCart20325687_"}))
+input_btn = soup.find("input", {"name":"add", "value":"In den Warenkorb"})          
+print(input_btn['type'])
 
 # Prepare the Email-Server
 password = open('credentials.txt', 'r').read()
@@ -33,6 +35,7 @@ msg['Subject']= 'Raspberry Pi Email'
 msg['From'] = 'Hauke.diers@outlook.com'
 msg['To'] = 'Hauke.diers@outlook.com'
 
-s.send_message(msg)
+# Comment in the Email to send
+# s.send_message(msg)
 s.quit()
 
