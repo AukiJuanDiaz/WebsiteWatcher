@@ -3,6 +3,9 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
 
+#Email transfer
+import smtplib
+from email.mime.text import MIMEText
 
 req = Request("https://www.ikea.com/de/de/catalog/products/20325687/")
 try:
@@ -16,3 +19,11 @@ else:
     soup = BeautifulSoup(response, 'html.parser')
     
 print(soup.prettify())
+
+password = open('credentials.txt', 'r').read()
+
+print(password)
+
+S = smtplib.SMTP('ssrs.reachmail.net',2525)
+S.login('hauke.diers@outlook.com', password)
+
