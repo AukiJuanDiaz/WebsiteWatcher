@@ -10,16 +10,19 @@ password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
 
 # Add the username and password.
 # If we knew the realm, we could use it instead of None.
+# Import credentials
 username, password = open('credentials_TUHH_SOS.txt', 'r').read().splitlines()
-print("usertname:",username)
-print("password:",password)
-print("a","b")
+
+##print("username:",username)
+##print("password:",password)
+
 password_mgr.add_password(None, top_level_url, username, password)
 
 handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
 
 # create "opener" (OpenerDirector instance)
 opener = urllib.request.build_opener(handler)
+urllib.request.install_opener(opener)
 
 try:
     # use the opener to fetch a URL
