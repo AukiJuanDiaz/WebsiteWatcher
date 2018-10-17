@@ -23,7 +23,7 @@ input_btn = soup.find("input", {"name":"add", "value":"In den Warenkorb"})
 print(input_btn['type'])
 
 # Prepare the Email-Server
-password = open('credentials.txt', 'r').read()
+password = open('credentials_Email.txt', 'r').read()
 s = smtplib.SMTP('ssrs.reachmail.net',25)
 s.login('hauke.diers@outlook.com', password)
 
